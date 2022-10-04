@@ -2011,6 +2011,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: [],
+      error: null,
       isLoading: false
     };
   },
@@ -2019,10 +2020,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.isLoading = true;
-      axios.get("http://localhost:8000/api/posts").then(function (res) {
+      axios.get("http://localhost:8000/pi/posts").then(function (res) {
         return [_this.posts = res.data];
       })["catch"](function (err) {
-        console.error(err);
+        _this.error = "errore durante il fetch dei post";
       }).then(function () {
         _this.isLoading = false;
       }).then(function () {
@@ -2225,7 +2226,26 @@ var render = function render() {
     attrs: {
       id: "posts-list"
     }
-  }, [_c("h2", [_vm._v("Posts")]), _vm._v(" "), _vm.isLoading ? _c("AppLoader") : _c("div", [_vm.posts.length ? _c("div", _vm._l(_vm.posts, function (post) {
+  }, [_c("h2", [_vm._v("Posts")]), _vm._v(" "), _vm.isLoading ? _c("AppLoader") : _vm.error ? _c("div", {
+    staticClass: "alert alert-danger alert-dismissible fade show",
+    attrs: {
+      role: "alert"
+    }
+  }, [_c("p", [_vm._v(_vm._s(_vm.error))]), _vm._v(" "), _c("button", {
+    staticClass: "close",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        _vm.error = null;
+      }
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])]) : _c("div", [_vm.posts.length ? _c("div", _vm._l(_vm.posts, function (post) {
     return _c("PostCard", {
       key: post.id,
       attrs: {

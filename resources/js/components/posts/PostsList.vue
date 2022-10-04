@@ -38,7 +38,7 @@
             fetchPosts(){
                 this.isLoading = true;
                 axios
-                .get("http://localhost:8000/pi/posts")
+                .get("http://localhost:8000/api/posts")
                 .then((res) => [
                     this.posts = res.data
                 ])

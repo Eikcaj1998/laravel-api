@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
 Route::get('/{any?}',function (){
     return view('guest.home');
 })->where('any','.*');
+
+Route::get('/posts','Api|PostController@index');

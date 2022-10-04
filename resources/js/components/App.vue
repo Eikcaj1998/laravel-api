@@ -1,17 +1,21 @@
 <template>
-    <div class="content"><Placeholder :subtitle="subtitle"/></div>
+    <div class="content">
+    
+    <AppHeader :title="title"/>
+    <main class="container mt-3"></main>
+    </div>
 </template>
 
 <script>
-    import Placeholder from "./Placeholder"
+    import AppHeader from "./AppHeader"
     export default{
         name:"App",
         components:{
-            Placeholder
+            AppHeader
         },
         data(){
             return{
-                subtitle:"or just wait",
+                title:"Boolpress",
             }
         }
     };

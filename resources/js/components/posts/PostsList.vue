@@ -1,25 +1,34 @@
 <template>
     <section id="posts-list">
         <h2>Posts</h2>
-        <div v-if="posts.length">
-            <PostCard v-for="post in posts" :key="post.id" :post="post"/>
+        <AppLoader v-if="isLoading"/>
+        <div v-else>
+            <div v-if="posts.length">
+                <PostCard v-for="post in posts" :key="post.id" :post="post"/>
+            </div>
+            <h5 v-else>Nessun post</h5>
         </div>
-        <h5 v-else>Nessun post</h5>
     </section>
 </template>
 
 <script>
     import PostCard from "./PostCard"
+    import AppLoader from "../AppLoader"
     export default{
         name:"PostsList",
-        components:{PostCard},
+        components:{
+            PostCard,
+            AppLoader
+        },
         data(){
             return{
-                posts:[]
+                posts:[],
+                isLoading:false
             };
         },
         methods: {
             fetchPosts(){
+                this.isLoading = true;
                 axios
                 .get("http://localhost:8000/api/posts")
                 .then((res) => [
@@ -27,6 +36,9 @@
                 ])
                 .catch((err)=>{
                     console.error(err);
+                })
+                .then(()=>{
+                    this.isLoading = false;
                 })
                 .then(()=>{
                     console.info("chiamata terminata");

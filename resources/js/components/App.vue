@@ -2,21 +2,25 @@
     <div class="content">
     
     <AppHeader :title="title"/>
-    <main class="container mt-3"></main>
+    <main class="container mt-3">
+        <PostsList/>
+    </main>
     </div>
 </template>
 
 <script>
     import AppHeader from "./AppHeader"
+    import PostsList from "./posts/PostsList"
     export default{
         name:"App",
         components:{
-            AppHeader
+            AppHeader, 
+            PostsList
         },
         data(){
             return{
                 title:"Boolpress",
-            }
-        }
+            };
+        },
     };
 </script>

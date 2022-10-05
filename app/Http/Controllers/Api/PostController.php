@@ -36,12 +36,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::whit(['category','tags','author'])->findOrFail($id);
+        $post = Post::with(['category'])->where('slug', $slug)->first();
         if(!$post) return response('Not found',404);
         return response()->json($post);
     }

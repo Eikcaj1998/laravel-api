@@ -15,15 +15,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <router-link :to="{name: 'home'}" class="nav-link">Home</router-link>
+                <li v-for="link in links" :key="link.name" class="nav-item">
+                    <router-link :to="{name: 'link.name'}" class="nav-link">{{link.label}}</router-link>
                 </li> 
-                <li class="nav-item active">
-                    <router-link :to="{name: 'contacts'}" class="nav-link">Contacts</router-link>
-                </li> 
-                <li class="nav-item active">
-                    <router-link :to="{name: 'about'}"  class="nav-link">About</router-link>
-                </li>
             </ul>
         </div>
         </nav>
@@ -33,6 +27,16 @@
 <script>
     export default{
         name:"AppHeader",
+        data(){
+            return{
+                links:[
+                {name:"home",label:"Home"},
+                {name:"about",label:"About"},
+                {name:"contacts",label:"Contacts"},
+            ],
+            };
+
+        },
         props:{
             title: String,
         },

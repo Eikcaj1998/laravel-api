@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::namespace('Api')->group(function(){
 
-Route::get('/posts','Api\PostController@index');
+    Route::get('/posts','PostController@index');
+    Route::get('/posts/{id}','PostController@show');
+});
 

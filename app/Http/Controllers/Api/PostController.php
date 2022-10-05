@@ -41,7 +41,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::whit(['category','tags','author'])->findOrFail($id);
+        if(!$post) return response('Not found',404);
+        return response()->json($post);
     }
 
     /**

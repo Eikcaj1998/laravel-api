@@ -10,11 +10,12 @@ import NotFoundPage from './components/pages/NotFoundPage.vue';
 
 const routes = new VueRouter({
     mode: 'history',
+    linkExactActiveClass:'active',
     routes:[
-        {path:'/',component:HomePage},
-        {path:'/about',component:AboutPage},
-        {path:'/contacts',component:ContactsPage},
-        {path:'*',component:NotFoundPage},
+        {path:'/',component:HomePage,name:'home'},
+        {path:'/about',component:AboutPage,name:'about'},
+        {path:'/contacts',component:ContactsPage,name:'contact'},
+        {path:'*',component:NotFoundPage,name:'not_found'},
     ]
 })
 
